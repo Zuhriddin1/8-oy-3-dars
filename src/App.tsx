@@ -3,7 +3,7 @@ const App: FC = () => {
   return (
     <div>
       App
-      {/* Video yoq edi va man homeworkni qilla olmadim dushanba kunigacha qilib qoyaman  */}
+      {/* Video yoq edi va man homeworkni qilla olmadim dushanba kunigacha push qilib  qoyaman  */}
     </div>
   );
 };
