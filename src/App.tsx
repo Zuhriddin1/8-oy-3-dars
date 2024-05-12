@@ -1,12 +1,14 @@
 import { FC } from "react";
-interface AppType {
-  name: string;
-}
-const App: FC<AppType> = () => {
+import Header from "./components/Header";
+import Body from "./components/Body";
+const App: FC = () => {
   return (
-    <div>
-      App
-      {/* Video yoq edi va man homeworkni qilla olmadim dushanba kunigacha push qilib  qoyaman  */}
+    <div className="bg-white w-full h-full flex flex-col items-center justify-center pt-[200px]">
+      <h1 className="uppercase text-slate-800 font-bold text-[50px] leading-6">
+        Todo list
+      </h1>
+      <Header></Header>
+      <Body></Body>
     </div>
   );
 };
