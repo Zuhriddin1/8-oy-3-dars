@@ -1,5 +1,8 @@
 import { FC } from "react";
-const App: FC = () => {
+interface AppType {
+  name: string;
+}
+const App: FC<AppType> = () => {
   return (
     <div>
       App
