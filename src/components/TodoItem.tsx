@@ -4,7 +4,11 @@ const TodoItem = () => {
   return (
     <div className="flex justify-between items-center bg-white mb-6 p-4 rounded-lg">
       <div className="lable-wrappew flex items-center gap-4">
-        <input type="checkbox" className="checkbox checkbox-primary" />
+        <input
+          type="checkbox"
+          placeholder="..."
+          className="checkbox checkbox-primary"
+        />
         <div className="info">
           <h3 className="text-2xl">Lorem, ipsum dolor</h3>
           <time>10:00</time>
