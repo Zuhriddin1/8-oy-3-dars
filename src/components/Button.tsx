@@ -1,8 +1,17 @@
 import { FC } from "react";
-
-const Button: FC = () => {
+interface ButtonType {
+  click: () => void;
+}
+const Button: FC<ButtonType> = (props) => {
   return (
-    <button className="btn btn-primary text-2xl px-8 py-0">Add Task</button>
+    <button
+      onClick={() => {
+        props.click();
+      }}
+      className="btn btn-primary text-2xl px-8 py-0"
+    >
+      Add Task
+    </button>
   );
 };
 
