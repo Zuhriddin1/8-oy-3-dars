@@ -64,7 +64,6 @@ const App = () => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     seTodos(updatedTodos);
   };
-
   return (
     <div className="w-1/2 mx-auto mt-10">
       <h1 className="uppercase  text-gray-800 mb-10 text-5xl text-center font-bold">
