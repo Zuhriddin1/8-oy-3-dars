@@ -10,11 +10,15 @@ interface TodoType {
 interface TodoItemProps {
   data: TodoType;
   check: (id: number, status: boolean) => void;
+  deleteTodo: (id: number) => void;
 }
-const TodoItem: FC<TodoItemProps> = ({ data, check }) => {
+const TodoItem: FC<TodoItemProps> = ({ data, check, deleteTodo }) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     check(data.id, event.target.checked);
   }
+  const handleDelete = () => {
+    deleteTodo(data.id);
+  };
   const dateString = new Date(data.date).toLocaleString();
   return (
     <div className="flex justify-between items-center bg-white mb-6 p-4 rounded-lg">
@@ -34,7 +38,7 @@ const TodoItem: FC<TodoItemProps> = ({ data, check }) => {
         </div>
       </div>
       <div className="actions flex items-center gap-1 text-2xl">
-        <span className="bg-gray-300 p-3 rounded">
+        <span className="bg-gray-300 p-3 rounded" onClick={handleDelete}>
           <FaTrash className="cursor-pointer" />
         </span>
         <span className="bg-gray-300 p-3 rounded">
