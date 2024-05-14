@@ -20,6 +20,7 @@ const App = () => {
     ) {
       data = JSON.parse(localStorage.getItem("todos")!);
     }
+    return data;
   }
   useEffect(() => {
     let old = getData();
@@ -37,9 +38,18 @@ const App = () => {
         id: Date.now(),
         name: TodoRef.current.value,
         date: new Date(),
+        status: false,
       };
+      let EnterTodos = localStorage.getItem("todos");
+      let todos = EnterTodos ? JSON.parse(EnterTodos) : [];
+      todos.push(todo);
+      localStorage.setItem("todos", JSON.stringify(todos));
+      seTodos(todos);
+      TodoRef.current.value = "";
+      (document.getElementById("my_modal_3") as HTMLFormElement).close();
     }
   }
+
   return (
     <div className="w-1/2 mx-auto mt-10">
       <h1 className="uppercase  text-gray-800 mb-10 text-5xl text-center font-bold">
