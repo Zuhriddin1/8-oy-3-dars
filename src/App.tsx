@@ -44,7 +44,7 @@ const App = () => {
       let todos = EnterTodos ? JSON.parse(EnterTodos) : [];
       todos.push(todo);
       localStorage.setItem("todos", JSON.stringify(todos));
-      seTodos(todos);
+      seTodos([...todos]);
       TodoRef.current.value = "";
       (document.getElementById("my_modal_3") as HTMLFormElement).close();
     }
@@ -60,11 +60,10 @@ const App = () => {
         <Filter></Filter>
       </header>
       <div className="todo-wrapper my-8 p-6 bg-gray-300 rounded-lg">
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
-        <TodoItem></TodoItem>
+        {todos.length &&
+          todos.map((el, index) => {
+            return <TodoItem data={el} key={index}></TodoItem>;
+          })}
       </div>
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">

@@ -1,17 +1,34 @@
+import { FC } from "react";
 import { FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
-const TodoItem = () => {
+interface DataType {
+  data: {
+    id: number;
+    name: string;
+    status: boolean;
+    date: string;
+  };
+}
+const TodoItem: FC<DataType> = (props) => {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    event.preventDefault();
+  }
+  const dateString = props.data.date.toLocaleString();
   return (
     <div className="flex justify-between items-center bg-white mb-6 p-4 rounded-lg">
       <div className="lable-wrappew flex items-center gap-4">
         <input
           type="checkbox"
           placeholder="..."
+          onChange={handleChange}
+          checked={props.data.status}
           className="checkbox checkbox-primary"
         />
         <div className="info">
-          <h3 className="text-2xl">Lorem, ipsum dolor</h3>
-          <time>10:00</time>
+          <h3 className={`text-2xl ${props.data.status ? "line-through" : ""}`}>
+            {props.data.name}
+          </h3>
+          <time>{dateString}</time>
         </div>
       </div>
       <div className="actions flex items-center gap-1 text-2xl">
