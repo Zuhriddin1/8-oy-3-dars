@@ -22,8 +22,8 @@ const App = () => {
     }
   }
   useEffect(() => {
-    let old = getData
-    
+    let old = getData();
+    seTodos(old);
   }, []);
   function openModal() {
     if (document.getElementById("my_modal_3")) {
