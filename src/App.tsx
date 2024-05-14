@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./components/Button";
 import Filter from "./components/Filter";
 import TodoItem from "./components/TodoItem";
-import { Fa5 } from "react-icons/fa6";
 interface TodoType {
   id: number;
   name: string;
   date: string;
   status: boolean;
+  check: () => void;
 }
 const App = () => {
   const [todos, seTodos] = useState<TodoType[]>([]);
@@ -49,7 +49,17 @@ const App = () => {
       (document.getElementById("my_modal_3") as HTMLFormElement).close();
     }
   }
-
+  function handleCheck(id: number, status: boolean) {
+    let copied = JSON.parse(JSON.stringify(todos));
+    copied = copied.map((el: TodoType) => {
+      if (el.id == id) {
+        el.status = status;
+      }
+      return el;
+    });
+    seTodos(copied);
+    localStorage.setItem("todos", JSON.stringify(copied));
+  }
   return (
     <div className="w-1/2 mx-auto mt-10">
       <h1 className="uppercase  text-gray-800 mb-10 text-5xl text-center font-bold">
@@ -62,7 +72,9 @@ const App = () => {
       <div className="todo-wrapper my-8 p-6 bg-gray-300 rounded-lg">
         {todos.length &&
           todos.map((el, index) => {
-            return <TodoItem data={el} key={index}></TodoItem>;
+            return (
+              <TodoItem check={handleCheck} data={el} key={index}></TodoItem>
+            );
           })}
       </div>
       <dialog id="my_modal_3" className="modal">
@@ -87,5 +99,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
