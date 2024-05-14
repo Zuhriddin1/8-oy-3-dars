@@ -1,9 +1,30 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./components/Button";
 import Filter from "./components/Filter";
 import TodoItem from "./components/TodoItem";
+import { Fa5 } from "react-icons/fa6";
+interface TodoType {
+  id: number;
+  name: string;
+  date: string;
+  status: boolean;
+}
 const App = () => {
+  const [todos, seTodos] = useState<TodoType[]>([]);
   const TodoRef = useRef<HTMLInputElement>(null);
+  function getData() {
+    let data: TodoType[] = [];
+    if (
+      localStorage.getItem("todos") &&
+      localStorage.getItem("todos") != null
+    ) {
+      data = JSON.parse(localStorage.getItem("todos")!);
+    }
+  }
+  useEffect(() => {
+    let old = getData
+    
+  }, []);
   function openModal() {
     if (document.getElementById("my_modal_3")) {
       (document.getElementById("my_modal_3") as HTMLFormElement).showModal();
@@ -11,8 +32,12 @@ const App = () => {
   }
   function handleSave(event: React.MouseEvent) {
     event.preventDefault();
-    if (TodoRef && TodoRef.current) {
-      console.log(TodoRef.current.value);
+    if (TodoRef && TodoRef.current && TodoRef.current.value) {
+      const todo = {
+        id: Date.now(),
+        name: TodoRef.current.value,
+        date: new Date(),
+      };
     }
   }
   return (
